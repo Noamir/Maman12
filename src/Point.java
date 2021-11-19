@@ -11,6 +11,7 @@ public class Point {
     private int _y;
 
     // 2. constructors
+
     /**
      * Constructor for objects of class Point Constructs a new point with the specified x y coordinates
      *
@@ -33,6 +34,7 @@ public class Point {
     }
 
     // 3. getters and setters
+
     /**
      * Returns the x coordinate of the point.
      *
@@ -70,6 +72,7 @@ public class Point {
     }
 
     // 4. methods
+
     /**
      * Representation of the object in String
      *
