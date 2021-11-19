@@ -7,9 +7,10 @@ Thank you so much for reviewing this with \ for me (:
 
 Few things - 
 1. In the src folder you will find 3 classes, and 3 testers provided by the Uni.
+
 2. All the API documantations were provided to us, so it's a copy paste, not my words.
 
-Stil - if you find any mistake of think about corrections - please let me know.
+    Stil - if you find any mistake of think about corrections - please let me know.
 
 3. I added the assignment file in the root of this repo. (pdf file)
 
