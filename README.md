@@ -10,7 +10,7 @@ Few things -
 
 2. All the API documantations were provided to us, so it's a copy paste, not my words.
 
-    Stil - if you find any mistake of think about corrections - please let me know.
+    Still - if you find any mistake of think about corrections - please let me know.
 
 3. I added the assignment file in the root of this repo. (pdf file)
 
