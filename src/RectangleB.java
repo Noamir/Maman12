@@ -6,6 +6,11 @@
  * @version 2022a
  */
 public class RectangleB {
+
+    // initialize class constants
+    private final int MIN_WIDTH = 1;
+    private final int MIN_HEIGHT = 1;
+
     // 1. instance variables
     private Point _pointSW;
     private Point _pointNE;
@@ -13,44 +18,36 @@ public class RectangleB {
     // 2. constructors
 
     /**
-     * First constructor for objects of class RectangleB Constructs a new rectangle with the specified width, height and it's south west corner is (0,0)
+     * Construct a new rectangle with the specified width, height. Initialize south-west corner to (0,0)
      *
      * @param w - The rectangle width
      * @param h - The rectangle height
      */
     public RectangleB(int w, int h) {
+        w = getProperWidth(w);
+        h = getProperHeight(h);
+
         _pointSW = new Point(0, 0);
-
-        if (w < 1)
-            w = 1;  // TODO: Should I do final DEFAULT_WIDTH = 1
-
-        if (h < 1)
-            h = 1; // TODO: Should I do final DEFAULT_HEIGHT = 1
-
         _pointNE = new Point(w, h);
     }
 
     /**
-     * Second constructor for objects of class RectangleB Constructs a new rectangle with the specified vertices
+     * Construct a new rectangle with the specified width, height and south-west vertex
      *
      * @param p - south-western vertex
      * @param w - The rectangle width
      * @param h - The rectangle height
      */
     public RectangleB(Point p, int w, int h) {
+        w = getProperWidth(w);
+        h = getProperHeight(h);
+
         _pointSW = new Point(p);
-
-        if (w < 1)
-            w = 1;
-
-        if (h < 1)
-            h = 1;
-
         _pointNE = new Point(_pointSW.getX() + w, _pointSW.getY() + h);
     }
 
     /**
-     * Third constructor for objects of class RectangleB Constructs a new rectangle with the specified vertices
+     * Construct a new rectangle with the specified vertices
      *
      * @param sw - south-western vertex
      * @param ne - north-eastern vertex
@@ -100,12 +97,21 @@ public class RectangleB {
     public void setPointSW(Point p) {
         int deltaX = p.getX() - _pointSW.getX();
         int deltaY = p.getY() - _pointSW.getY();
-        //_pointSW = new Point(p);
         _pointSW.move(deltaX, deltaY);
         _pointNE.move(deltaX, deltaY);
     }
 
     // 4. methods
+
+    // width must be a positive integer. If not - set to default
+    private int getProperWidth(int w) {
+        return Math.max(w, MIN_WIDTH);
+    }
+
+    // height must be a positive integer. If not - set to default
+    private int getProperHeight(int h) {
+        return Math.max(h, MIN_HEIGHT);
+    }
 
     /**
      * Returns a string representation of the rectangle
@@ -169,7 +175,8 @@ public class RectangleB {
      * @param w - the width of the rectangle to set to
      */
     public void setWidth(int w) {
-        _pointNE.setX(_pointSW.getX() + w);
+        if (w >= MIN_WIDTH)
+            _pointNE.setX(_pointSW.getX() + w);
     }
 
     /**
@@ -178,7 +185,8 @@ public class RectangleB {
      * @param h - the height of the rectangle to set to
      */
     public void setHeight(int h) {
-        _pointNE.setY(_pointSW.getY() + h);
+        if (h >= MIN_HEIGHT)
+            _pointNE.setY(_pointSW.getY() + h);
     }
 
     /**
@@ -187,7 +195,6 @@ public class RectangleB {
      * @param other - the rectangle to check equality with
      * @return true if other and this rectangle are equal
      */
-    //TODO: NOT SURE!
     public boolean equals(RectangleB other) {
         return this.toString().equals(other.toString());
     }
@@ -214,7 +221,6 @@ public class RectangleB {
     /**
      * Changes the width to height and vice versa
      */
-    // TODO: NOT SURE!
     public void changeSides() {
         int temp = getWidth();
         setWidth(getHeight());
@@ -228,8 +234,16 @@ public class RectangleB {
      * @return true - if the current Rectangle's completely in the other Rectangle which received as parameter, otherwise -false
      */
     public boolean isIn(RectangleB r) {
-        // all the options that rectangle r is PARTIALLY OUT of this rectangle. So return not all of these options.
-        return !(r._pointSW.isLeft(this._pointSW)) && !(r._pointSW.isUnder(this._pointSW)) && !(r.getPointNE().isRight(this.getPointNE()) && !(r.getPointNE().isAbove(this.getPointNE())));
+        if (this.getPointNE().isRight(r.getPointNE()))
+            return false; // current is out of r to the east
+        if (this._pointSW.isLeft(r._pointSW))
+            return false; // current is out of r to the west
+        if (this.getPointNE().isAbove(r.getPointNE()))
+            return false; // current is out of r to the north
+        if (this._pointSW.isUnder(r._pointSW))
+            return false; // current is out of r to the south
+
+        return true; // if got here, current is not out of r
     }
 
     /**
@@ -239,7 +253,15 @@ public class RectangleB {
      * @return true - if the current Rectangle's overlaps with the other Rectangle which received as parameter even by a single point, otherwise -false
      */
     public boolean overlap(RectangleB r) {
-        // all the options that the rectangles ARE COMPLETELY STRANGERS. So return not all of these options.
-        return !(r.getPointNE().isLeft(this._pointSW) || r._pointSW.isRight(this.getPointNE()) || r._pointSW.isAbove(this.getPointNE()) || r.getPointNE().isUnder(this._pointSW));
+        if (this._pointSW.isRight(r.getPointNE()))
+            return false; // current is completely to the east of r
+        if (this.getPointNE().isLeft(r._pointSW))
+            return false; // r is completely to the west of r
+        if (this._pointSW.isAbove(r.getPointNE()))
+            return false; // current is completely to the north of r
+        if (this.getPointNE().isUnder(r._pointSW))
+            return false; // current is completely to the south of r
+
+        return true; // if got here, current is not a stranger to r
     }
 }

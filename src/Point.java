@@ -13,7 +13,7 @@ public class Point {
     // 2. constructors
 
     /**
-     * Constructor for objects of class Point Constructs a new point with the specified x y coordinates
+     * Construct a new point with the specified x y coordinates
      *
      * @param x - the x coordinate
      * @param y - the y coordinate
@@ -89,9 +89,7 @@ public class Point {
      * @return true if the point to be compared is equal to the current point.
      */
     public boolean equals(Point other) {
-        return this._x == other._x && this._y == other._y;
-        // TODO: I think we also can do this.equals(other) --> it adds the toString method by default, than we compare the 2 full string
-        // return this.equals(other);
+        return this.toString().equals(other.toString());
     }
 
     /**

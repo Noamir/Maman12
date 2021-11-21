@@ -7,6 +7,11 @@
  */
 
 public class RectangleA {
+
+    // initialize class constants
+    private final int MIN_WIDTH = 1;
+    private final int MIN_HEIGHT = 1;
+
     // 1. instance variables
     private int _width;
     private int _height;
@@ -15,48 +20,32 @@ public class RectangleA {
     // 2. constructors
 
     /**
-     * First constructor for objects of class RectangleA Constructs a new rectangle with the specified width, height, and it's south-west corner is (0,0)
+     * Construct a new rectangle with the specified width, height. Initialize south-west corner to (0,0)
      *
      * @param w - The rectangle width
      * @param h - The rectangle height
      */
     public RectangleA(int w, int h) {
+        _width = getProperWidth(w);
+        _height = getProperHeight(h);
         _pointSW = new Point(0, 0);
-
-        if (w < 1)
-            _width = 1; // TODO: Should I do final DEFAULT_WIDTH = 1
-        else
-            _width = w;
-
-        if (h < 1)
-            _height = 1; // TODO: Should I do final DEFAULT_HEIGHT = 1
-        else
-            _height = h;
     }
 
     /**
-     * Second constructor for objects of class RectangleA Construct a new rectangle with the specified width, height and south-west vertex
+     * Construct a new rectangle with the specified width, height and south-west vertex
      *
      * @param p - south-western vertex
      * @param w - The rectangle width
      * @param h - The rectangle height
      */
     public RectangleA(Point p, int w, int h) {
+        _width = getProperWidth(w);
+        _height = getProperHeight(h);
         _pointSW = new Point(p);
-
-        if (w < 1)
-            _width = 1;
-        else
-            _width = w;
-
-        if (h < 1)
-            _height = 1;
-        else
-            _height = h;
     }
 
     /**
-     * Third constructor for objects of class RectangleA Construct a new rectangle with the specified south-west vertex and north-east vertex
+     * Construct a new rectangle with the specified vertices
      *
      * @param sw - south-western vertex
      * @param ne - north-eastern vertex
@@ -113,7 +102,7 @@ public class RectangleA {
      * @param w - the width of the rectangle to set to
      */
     public void setWidth(int w) {
-        if (w > 0)
+        if (w >= MIN_WIDTH)
             _width = w;
     }
 
@@ -123,7 +112,7 @@ public class RectangleA {
      * @param h - the height of the rectangle to set to
      */
     public void setHeight(int h) {
-        if (h > 0)
+        if (h >= MIN_HEIGHT)
             _height = h;
     }
 
@@ -137,6 +126,16 @@ public class RectangleA {
     }
 
     // 4. methods
+
+    // width must be bigger than MIN_WIDTH If not - set to MIN_WIDTH
+    private int getProperWidth(int w) {
+        return Math.max(w, MIN_WIDTH);
+    }
+
+    // height must be bigger than MIN_HEIGHT If not - set to MIN_HEIGHT
+    private int getProperHeight(int h) {
+        return Math.max(h, MIN_HEIGHT);
+    }
 
     /**
      * Returns a string representation of the rectangle
@@ -181,7 +180,6 @@ public class RectangleA {
      * @param other - the rectangle to check equality with
      * @return true if other and this rectangle are equal
      */
-    //TODO: NOT SURE!
     public boolean equals(RectangleA other) {
         return this.toString().equals(other.toString());
     }
@@ -217,7 +215,6 @@ public class RectangleA {
     /**
      * Changes the width to height and vice versa
      */
-    // TODO: NOT SURE!
     public void changeSides() {
         int temp = _width;
         _width = _height;
@@ -231,10 +228,8 @@ public class RectangleA {
      * @return true - if the current Rectangle's completely in the other Rectangle which received as parameter, otherwise -false
      */
     public boolean isIn(RectangleA r) {
-        // all the options that rectangle r is PARTIALLY OUT of this rectangle. So return not any of these options.
-        // TODO: Why tho or way is not working? - tester fails with the or. And is working good
-        //return !(r._pointSW.isLeft(this._pointSW) || r._pointSW.isUnder(this._pointSW) || r.getPointNE().isRight(this.getPointNE()) || r.getPointNE().isAbove(this.getPointNE()));
-        return !(r._pointSW.isLeft(this._pointSW)) && !(r._pointSW.isUnder(this._pointSW)) && !(r.getPointNE().isRight(this.getPointNE()) && !(r.getPointNE().isAbove(this.getPointNE())));
+        // all the options that this rectangle is PARTIALLY OUT of r rectangle. So return NOT ALL of these options.
+        return !(this._pointSW.isLeft(r._pointSW)) && !(this._pointSW.isUnder(r._pointSW)) && !(this.getPointNE().isRight(r.getPointNE())) && !(this.getPointNE().isAbove(r.getPointNE()));
     }
 
     /**
