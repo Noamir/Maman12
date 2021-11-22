@@ -8,7 +8,7 @@
 
 public class RectangleA {
 
-    // initialize class constants
+    // initialize final variables
     private final int MIN_WIDTH = 1;
     private final int MIN_HEIGHT = 1;
 
@@ -127,12 +127,12 @@ public class RectangleA {
 
     // 4. methods
 
-    // width must be bigger than MIN_WIDTH If not - set to MIN_WIDTH
+    // width must be bigger than MIN_WIDTH. If not - set to MIN_WIDTH
     private int getProperWidth(int w) {
         return Math.max(w, MIN_WIDTH);
     }
 
-    // height must be bigger than MIN_HEIGHT If not - set to MIN_HEIGHT
+    // height must be bigger than MIN_HEIGHT. If not - set to MIN_HEIGHT
     private int getProperHeight(int h) {
         return Math.max(h, MIN_HEIGHT);
     }
@@ -228,8 +228,16 @@ public class RectangleA {
      * @return true - if the current Rectangle's completely in the other Rectangle which received as parameter, otherwise -false
      */
     public boolean isIn(RectangleA r) {
-        // all the options that this rectangle is PARTIALLY OUT of r rectangle. So return NOT ALL of these options.
-        return !(this._pointSW.isLeft(r._pointSW)) && !(this._pointSW.isUnder(r._pointSW)) && !(this.getPointNE().isRight(r.getPointNE())) && !(this.getPointNE().isAbove(r.getPointNE()));
+        if (this.getPointNE().isRight(r.getPointNE()))
+            return false; // current is out of r to the east
+        if (this._pointSW.isLeft(r._pointSW))
+            return false; // current is out of r to the west
+        if (this.getPointNE().isAbove(r.getPointNE()))
+            return false; // current is out of r to the north
+        if (this._pointSW.isUnder(r._pointSW))
+            return false; // current is out of r to the south
+
+        return true; // if got here, current is not out of r
     }
 
     /**
@@ -239,7 +247,15 @@ public class RectangleA {
      * @return true - if the current Rectangle's overlaps with the other Rectangle which received as parameter even by a single point, otherwise -false
      */
     public boolean overlap(RectangleA r) {
-        // all the options that the rectangles ARE COMPLETELY STRANGERS. So return not any of these options.
-        return !(r.getPointNE().isLeft(this._pointSW) || r._pointSW.isRight(this.getPointNE()) || r._pointSW.isAbove(this.getPointNE()) || r.getPointNE().isUnder(this._pointSW));
+        if (this._pointSW.isRight(r.getPointNE()))
+            return false; // current is completely to the east of r
+        if (this.getPointNE().isLeft(r._pointSW))
+            return false; // current is completely to the west of r
+        if (this._pointSW.isAbove(r.getPointNE()))
+            return false; // current is completely to the north of r
+        if (this.getPointNE().isUnder(r._pointSW))
+            return false; // current is completely to the south of r
+
+        return true; // if got here, current is not a stranger to r
     }
 }

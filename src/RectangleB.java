@@ -7,7 +7,7 @@
  */
 public class RectangleB {
 
-    // initialize class constants
+    // initialize final variables
     private final int MIN_WIDTH = 1;
     private final int MIN_HEIGHT = 1;
 
@@ -256,7 +256,7 @@ public class RectangleB {
         if (this._pointSW.isRight(r.getPointNE()))
             return false; // current is completely to the east of r
         if (this.getPointNE().isLeft(r._pointSW))
-            return false; // r is completely to the west of r
+            return false; // current is completely to the west of r
         if (this._pointSW.isAbove(r.getPointNE()))
             return false; // current is completely to the north of r
         if (this.getPointNE().isUnder(r._pointSW))
