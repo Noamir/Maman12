@@ -89,7 +89,8 @@ public class Point {
      * @return true if the point to be compared is equal to the current point.
      */
     public boolean equals(Point other) {
-        return this.toString().equals(other.toString());
+        return this._x == other._x &&
+                this._y == other._y;
     }
 
     /**

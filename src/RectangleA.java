@@ -181,7 +181,9 @@ public class RectangleA {
      * @return true if other and this rectangle are equal
      */
     public boolean equals(RectangleA other) {
-        return this.toString().equals(other.toString());
+        return this._width == other._width &&
+                this._height == other._height &&
+                this._pointSW.equals(other._pointSW);
     }
 
     /**
