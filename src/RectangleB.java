@@ -10,6 +10,8 @@ public class RectangleB {
     // initialize final variables
     private final int MIN_WIDTH = 1;
     private final int MIN_HEIGHT = 1;
+    private final int SW_DEFAULT_X = 0;
+    private final int SW_DEFAULT_Y = 0;
 
     // 1. instance variables
     private Point _pointSW;
@@ -27,7 +29,7 @@ public class RectangleB {
         w = getProperWidth(w);
         h = getProperHeight(h);
 
-        _pointSW = new Point(0, 0);
+        _pointSW = new Point(SW_DEFAULT_X, SW_DEFAULT_Y);
         _pointNE = new Point(w, h);
     }
 
@@ -93,12 +95,12 @@ public class RectangleB {
      *
      * @param p - the new S-W point of the rectangle
      */
-    // TODO: NOT SURE!
     public void setPointSW(Point p) {
-        int deltaX = p.getX() - _pointSW.getX();
-        int deltaY = p.getY() - _pointSW.getY();
-        _pointSW.move(deltaX, deltaY);
-        _pointNE.move(deltaX, deltaY);
+        int w = getWidth();
+        int h = getHeight();
+
+        _pointSW = new Point(p);
+        _pointNE = new Point(_pointSW.getX() + w, _pointSW.getY() + h);
     }
 
     // 4. methods

@@ -11,6 +11,8 @@ public class RectangleA {
     // initialize final variables
     private final int MIN_WIDTH = 1;
     private final int MIN_HEIGHT = 1;
+    private final int SW_DEFAULT_X = 0;
+    private final int SW_DEFAULT_Y = 0;
 
     // 1. instance variables
     private int _width;
@@ -28,7 +30,7 @@ public class RectangleA {
     public RectangleA(int w, int h) {
         _width = getProperWidth(w);
         _height = getProperHeight(h);
-        _pointSW = new Point(0, 0);
+        _pointSW = new Point(SW_DEFAULT_X, SW_DEFAULT_Y);
     }
 
     /**

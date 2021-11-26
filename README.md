@@ -1,7 +1,5 @@
 # Maman12
 Open Uni, Java course, November 2021
-<<<<<<< HEAD
-=======
 
 Hi Tomer! 
 Thank you so much for reviewing this with \ for me (:
@@ -19,4 +17,3 @@ See them as questions.
 
 Again - Thanks a lot!!
 And I love you <3
->>>>>>> 9640733 (Create README.md)
