@@ -234,7 +234,7 @@ public class RectangleB {
      * Returns true if the current rectangle is in the parameter rectangle
      *
      * @param r - another Rectangle to check with
-     * @return true - if the current Rectangle's completely in the other Rectangle which received as parameter, otherwise -false
+     * @return true - if the current Rectangle's completely in the other Rectangle which received as parameter, otherwise - false
      */
     public boolean isIn(RectangleB r) {
         if (this.getPointNE().isRight(r.getPointNE()))
@@ -253,7 +253,7 @@ public class RectangleB {
      * Returns true if the current rectangle overlaps with the parameter rectangle
      *
      * @param r - another Rectangle to check with
-     * @return true - if the current Rectangle's overlaps with the other Rectangle which received as parameter even by a single point, otherwise -false
+     * @return true - if the current Rectangle's overlaps with the other Rectangle which received as parameter even by a single point, otherwise - false
      */
     public boolean overlap(RectangleB r) {
         if (this._pointSW.isRight(r.getPointNE()))

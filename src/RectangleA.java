@@ -129,12 +129,12 @@ public class RectangleA {
 
     // 4. methods
 
-    // width must be bigger than MIN_WIDTH. If not - set to MIN_WIDTH
+    // width must be bigger than MIN_WIDTH. If not - return MIN_WIDTH
     private int getProperWidth(int w) {
         return Math.max(w, MIN_WIDTH);
     }
 
-    // height must be bigger than MIN_HEIGHT. If not - set to MIN_HEIGHT
+    // height must be bigger than MIN_HEIGHT. If not - return MIN_HEIGHT
     private int getProperHeight(int h) {
         return Math.max(h, MIN_HEIGHT);
     }
@@ -201,7 +201,7 @@ public class RectangleA {
      * Returns true if the current rectangle is larger than the parameter rectangle
      *
      * @param other - another Rectangle to compare with
-     * @return true - if the current Rectangle's area is larger than the other Rectangle which received as parameter, otherwise -false
+     * @return true - if the current Rectangle's area is larger than the other Rectangle which received as parameter, otherwise - false
      */
     public boolean isLarger(RectangleA other) {
         return this.getArea() > other.getArea();
@@ -229,7 +229,7 @@ public class RectangleA {
      * Returns true if the current rectangle is in the parameter rectangle
      *
      * @param r - another Rectangle to check with
-     * @return true - if the current Rectangle's completely in the other Rectangle which received as parameter, otherwise -false
+     * @return true - if the current Rectangle's completely in the other Rectangle which received as parameter, otherwise - false
      */
     public boolean isIn(RectangleA r) {
         if (this.getPointNE().isRight(r.getPointNE()))
@@ -248,7 +248,7 @@ public class RectangleA {
      * Returns true if the current rectangle overlaps with the parameter rectangle
      *
      * @param r - another Rectangle to check with
-     * @return true - if the current Rectangle's overlaps with the other Rectangle which received as parameter even by a single point, otherwise -false
+     * @return true - if the current Rectangle's overlaps with the other Rectangle which received as parameter even by a single point, otherwise - false
      */
     public boolean overlap(RectangleA r) {
         if (this._pointSW.isRight(r.getPointNE()))
