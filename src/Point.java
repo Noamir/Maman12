@@ -6,11 +6,11 @@
  */
 
 public class Point {
-    // 1. instance variable
+    // instance variable
     private int _x;
     private int _y;
 
-    // 2. constructors
+    // constructors
 
     /**
      * Construct a new point with the specified x y coordinates
@@ -33,7 +33,7 @@ public class Point {
         _y = other._y;
     }
 
-    // 3. getters and setters
+    // getters and setters
 
     /**
      * Returns the x coordinate of the point.
@@ -71,7 +71,7 @@ public class Point {
         _y = num;
     }
 
-    // 4. methods
+    // methods
 
     /**
      * Representation of the object in String

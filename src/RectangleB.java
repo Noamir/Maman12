@@ -13,14 +13,14 @@ public class RectangleB {
     private final int SW_DEFAULT_X = 0;
     private final int SW_DEFAULT_Y = 0;
 
-    // 1. instance variables
+    // instance variables
     private Point _pointSW;
     private Point _pointNE;
 
-    // 2. constructors
+    // constructors
 
     /**
-     * Construct a new rectangle with the specified width, height. Initialize south-west corner to (0,0)
+     * Construct a new rectangle with the specified width, height. Initialize south-west corner to default values
      *
      * @param w - The rectangle width
      * @param h - The rectangle height
@@ -69,7 +69,7 @@ public class RectangleB {
         _pointNE = new Point(r._pointNE);
     }
 
-    // 3. getters and setters
+    // getters and setters
 
     /**
      * Returns the South-West point of the rectangle
@@ -103,14 +103,14 @@ public class RectangleB {
         _pointNE = new Point(_pointSW.getX() + w, _pointSW.getY() + h);
     }
 
-    // 4. methods
+    // methods
 
-    // width must be a positive integer. If not - set to default
+    // width must be bigger than MIN_WIDTH. If not - return MIN_WIDTH
     private int getProperWidth(int w) {
         return Math.max(w, MIN_WIDTH);
     }
 
-    // height must be a positive integer. If not - set to default
+    // height must be bigger than MIN_HEIGHT. If not - return MIN_HEIGHT
     private int getProperHeight(int h) {
         return Math.max(h, MIN_HEIGHT);
     }

@@ -14,15 +14,15 @@ public class RectangleA {
     private final int SW_DEFAULT_X = 0;
     private final int SW_DEFAULT_Y = 0;
 
-    // 1. instance variables
+    // instance variables
     private int _width;
     private int _height;
     private Point _pointSW;
 
-    // 2. constructors
+    // constructors
 
     /**
-     * Construct a new rectangle with the specified width, height. Initialize south-west corner to (0,0)
+     * Construct a new rectangle with the specified width, height. Initialize south-west corner to default values
      *
      * @param w - The rectangle width
      * @param h - The rectangle height
@@ -69,7 +69,7 @@ public class RectangleA {
         _pointSW = new Point(r._pointSW);
     }
 
-    // 3. getters and setters
+    // getters and setters
 
     /**
      * Returns the width of the rectangle
@@ -127,7 +127,7 @@ public class RectangleA {
         _pointSW = new Point(p);
     }
 
-    // 4. methods
+    // methods
 
     // width must be bigger than MIN_WIDTH. If not - return MIN_WIDTH
     private int getProperWidth(int w) {
